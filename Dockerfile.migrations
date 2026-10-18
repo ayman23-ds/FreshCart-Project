@@ -1,0 +1,10 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir "psycopg[binary]>=3,<4"
+
+COPY scripts/run_migrations.py /app/run_migrations.py
+COPY migrations/ /app/migrations/
+
+CMD ["python", "/app/run_migrations.py"]
